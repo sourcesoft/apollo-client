@@ -1,7 +1,8 @@
 import gql, { disableFragmentWarnings } from 'graphql-tag';
 import { toIdValue } from 'apollo-utilities';
 
-import { diffQueryAgainstStore, ID_KEY } from '../readFromStore';
+import { diffQueryAgainstStore } from '../readFromStore';
+import { ID_KEY } from '../executeStoreQuery';
 import { writeQueryToStore } from '../writeToStore';
 import { HeuristicFragmentMatcher } from '../fragmentMatcher';
 
