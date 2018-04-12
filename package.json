@@ -60,15 +60,9 @@
     }
   },
   "lint-staged": {
-    "*.ts*": [
-      "prettier --trailing-comma all --single-quote --write",
-      "git add"
-    ],
-    "*.js*": [
-      "prettier --trailing-comma all --single-quote --write",
-      "git add"
-    ],
-    "*.json*": ["prettier --write", "git add"]
+    "*.ts*": ["prettier --trailing-comma all --single-quote --write"],
+    "*.js*": ["prettier --trailing-comma all --single-quote --write"],
+    "*.json*": ["prettier --write"]
   },
   "pre-commit": "lint-staged",
   "devDependencies": {
