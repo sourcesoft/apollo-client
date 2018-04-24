@@ -89,8 +89,12 @@ export class InMemoryCache extends ApolloCache<NormalizedCacheObject> {
       return null;
     }
 
+    const store = (query.optimistic && this.optimistic.length)
+      ? defaultNormalizedCacheFactory(this.extract(true))
+      : this.data;
+
     return readQueryFromStore({
-      store: defaultNormalizedCacheFactory(this.extract(query.optimistic)),
+      store,
       query: this.transformDocument(query.query),
       variables: query.variables,
       rootId: query.rootId,
@@ -115,8 +119,12 @@ export class InMemoryCache extends ApolloCache<NormalizedCacheObject> {
   }
 
   public diff<T>(query: Cache.DiffOptions): Cache.DiffResult<T> {
+    const store = (query.optimistic && this.optimistic.length)
+      ? defaultNormalizedCacheFactory(this.extract(true))
+      : this.data;
+
     return diffQueryAgainstStore({
-      store: defaultNormalizedCacheFactory(this.extract(query.optimistic)),
+      store: store,
       query: this.transformDocument(query.query),
       variables: query.variables,
       returnPartialData: query.returnPartialData,
