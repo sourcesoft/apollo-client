@@ -315,7 +315,7 @@ const executeSelectionSet = wrap(function _executeSelectionSet(
   }
 });
 
-const executeField = wrap(function _executeField(
+function executeField(
   field: FieldNode,
   rootValue: any,
   execContext: ExecContext,
@@ -382,22 +382,7 @@ const executeField = wrap(function _executeField(
     readStoreResult.result,
     execContext,
   ));
-}, {
-  makeCacheKey(
-    field: FieldNode,
-    rootValue: any,
-    execContext: ExecContext,
-  ) {
-    if (execContext.contextValue.store instanceof OptimisticObjectCache) {
-      return defaultMakeCacheKey(
-        field,
-        execContext.contextValue.store,
-        JSON.stringify(execContext.variableValues),
-        rootValue.id,
-      );
-    }
-  }
-});
+}
 
 function executeSubSelectedArray(
   field: FieldNode,
